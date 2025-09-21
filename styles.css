@@ -1,0 +1,229 @@
+:root {
+    --color-primary-dark: #2A0C4E;
+    --color-primary-light: #E0BBE4;
+    --color-accent: #FF6B6B;
+    --color-text-light: #F0F0F0;
+    --color-text-muted: #a0a0a0; /* Nova cor para texto riscado */
+    --color-neon-pink: #FF69B4; 
+    --color-button-purple: #9B59B6;
+}
+
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-image: url('assets/amigo-secreto.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* A box principal agora é um container flexível para as colunas */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(30, 0, 50, 0.5);
+    backdrop-filter: blur(10px) brightness(1.2);
+    -webkit-backdrop-filter: blur(10px) brightness(1.2);
+    border-radius: 32px;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(120, 0, 200, 0.4);
+    overflow: hidden;
+}
+
+/* Estilos para as colunas */
+.coluna-esquerda, .coluna-direita {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coluna-direita {
+    border-left: 1px solid rgba(120, 0, 200, 0.4);
+    justify-content: center;
+}
+
+.header-banner img {
+    display: none;
+}
+
+.input-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Títulos */
+.main-title, .section-title {
+    color: var(--color-text-light);
+    text-align: center;
+}
+.main-title {
+    font-family: "Merriweather", serif;
+    font-size: 48px;
+    font-weight: 900;
+    font-style: italic;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.section-title {
+    font-family: "Inter", serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Contêineres de entrada e botão */
+.input-wrapper {
+    display: flex;
+    width: 100%;
+    /* margin-bottom foi removido para dar espaço à area-mensagem */
+}
+
+.input-name {
+    flex-grow: 1;
+    padding: 12px 18px;
+    border: 2px solid var(--color-button-purple);
+    border-radius: 25px 0 0 25px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-light);
+    transition: all 0.3s ease;
+}
+.input-name::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+.input-name:focus {
+    outline: none;
+    border-color: #C450FF;
+    box-shadow: 0 0 10px #C450FF;
+}
+
+.button-container {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 30px;
+}
+
+/* Estilos de botão */
+button {
+    padding: 15px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--color-text-light);
+    font-weight: bold;
+}
+
+.button-add, .button-draw {
+    background-color: var(--color-button-purple);
+}
+.button-add:hover, .button-draw:hover {
+    background-color: #B67CC7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.button-add {
+    border-radius: 0 25px 25px 0;
+    padding: 15px 25px;
+}
+
+/* NOVO CÓDIGO ADICIONADO AQUI */
+/* Area de Mensagem de Erro/Status */
+.area-mensagem {
+    height: 20px; /* Reserva espaço para evitar que o layout pule */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: var(--color-neon-pink);
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Listas */
+ul {
+    list-style-type: none;
+    padding: 0; /* Removido padding padrão */
+}
+
+#listaAmigos {
+    color: var(--color-text-light);
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo para o nome sorteado na lista */
+#listaAmigos li.sorteado {
+    text-decoration: line-through;
+    color: var(--color-text-muted);
+}
+
+#listaAmigos li.sorteado::after {
+    content: " - Sorteado";
+    text-decoration: none; /* Garante que o 'after' não seja riscado */
+    display: inline-block; /* Necessário para o text-decoration funcionar corretamente */
+    color: var(--color-neon-pink);
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+/* Resultado do sorteio SEM A BOX */
+.result-list {
+    margin-top: 15px;
+    color: var(--color-neon-pink);
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.5;
+    text-shadow: 0 0 10px var(--color-neon-pink), 0 0 20px rgba(255, 105, 180, 0.7);
+}
+
+/* Botão de sortear */
+.button-draw {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.button-draw img {
+    margin-right: 15px;
+    filter: brightness(0) invert(1);
+}
+
+/* Estilo para o botão de reiniciar */
+.button-reset {
+    background-color: #6c757d; /* Um cinza para diferenciar */
+    color: white;
+    width: 100%;
+}
+
+.button-reset:hover {
+    background-color: #5a6268;
+}
